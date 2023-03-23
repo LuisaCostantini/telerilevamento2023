@@ -64,3 +64,34 @@ par(mfrow=c(2,1))
 plotRGB(l2011, r=4, g=3, b=2, stretch="lin")
 plotRGB(l2011, r=4, g=3, b=2, stretch="Hist")
 dev.off()
+#Exercise: plot the NIR band 
+plot(l2011[[4]])
+
+
+# Import data, setting the working directory 
+setwd("C:/lab/") #for windows
+library(raster) 
+
+#Import the 1988 image 
+setwd("C:/lab/")
+
+brick("p224r63_1988_masked.grd")
+l1988 <- brick("p224r63_1988_masked.grd")
+
+plot(l1988)
+# Exercise: plot in RGB space (natural colors) 
+plotRGB(l1988, r=3, g=2, b=1, stretch="lin")
+plotRGB(l1988, r=4, g=3, b=2, stretch="lin")
+
+#multiframe 
+par(mfrow=c(2,1))
+
+plotRGB(l1988, 4, 3, 2, stretch="lin")
+plotRGB(l2011, 4, 3, 2, stretch="lin")
+
+par(mfrow=c(2,2))
+plotRGB(l1988, 4, 3, 2, stretch="lin")
+plotRGB(l2011, 4, 3, 2, stretch="lin")
+
+plotRGB(l1988, 4, 3, 2, stretch="Hist")
+plotRGB(l2011, 4, 3, 2, stretch="Hist")
