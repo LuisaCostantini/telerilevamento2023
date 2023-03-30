@@ -32,3 +32,71 @@ plot(dvi1992)
 
 cl <- colorRampPalette(c("darkblue", "yellow", "red", "black"))(100)
 plot(dvi1992, col= cl)
+
+library(raster) 
+
+#Import and setting working directory
+
+setwd("C:/lab/")
+
+#Exercise: import defor1_.png
+imagedefor <- brick("defor1_.png")
+
+imagedefor
+
+plot(imagedefor)
+plotRGB(imagedefor, 1, 2, 3, stretch="lin")
+
+#Import the most recent image
+
+imagedefor2 <- brick("defor2_.png")
+plot(imagedefor2)
+
+plotRGB(imagedefor2, 1, 2, 3, stretch= "lin")
+
+#Exercise: plot the image from 1992 ontop of that of 2006 
+
+par(mfrow=c(2,1)
+plotRGB(imagedefor, 1, 2, 3, stretch="lin")
+plotRGB(imagedefor2, 1, 2, 3, stretch="lin")
+
+par(mfrow=c(2,2))
+plotRGB(imagedefor, 1, 2, 3, stretch="lin")
+plotRGB(imagedefor2, 1, 2, 3, stretch="lin")
+
+#Exercise: calculate DVI from 1992
+dvi1992 = imagedefor[[1]] - imagedefor[[2]]
+
+plot(dvi1992)
+
+cl <- colorRampPalette(c("darkorange", "yellow", "blueviolet", "cyan1"))(100)
+plot(dvi1992, col= cl)
+
+#Exercise: calculate DVI from 2006
+dvi2006 = imagedefor2[[2]] - imagedefor2[[1]]
+plot(dvi2006)
+
+cl <- colorRampPalette(c("darkorange", "yellow", "blueviolet", "cyan1"))(100)
+plot(2006, col= cl)
+
+#Multitemporal analysis
+differencedvi = dvi1992 - dvi2006
+
+cl <- colorRampPalette(c("blue", "white", "red"))(100)
+
+plot(differencedvi, col= cl)
+
+#--- NDVI 1992 
+ndvi1992  = dvi1992 / (image_1992[[1]] + image_1992[[2]]) #standardizzazione 
+plot(ndvi1992)
+
+plot(ndvi1992, col = cl)
+#--- NDVI 2006 
+ndvi_2006 = dvi2006 / (image_2006[[1]] + image_2006[[2]]) 
+plot(ndvi_2006)
+
+plot(ndvi_2006, col = cl)
+
+dif_ndvi = ndvi1992 - ndvi_2006
+
+plot(dif_ndvi)
