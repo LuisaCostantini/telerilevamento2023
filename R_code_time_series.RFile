@@ -1,0 +1,32 @@
+# R code for importing and analysing several image 
+library("raster")
+
+#Import the working directory 
+
+setwd("C:/lab/Greenland") # Windows
+lst_2000 <- raster("lst_2000.tif")
+plot(lst_2000)
+
+#Exercise: import all the data 
+lst_2000 <- raster("lst_2000.tif")
+lst_2005 <- raster("lst_2005.tif")
+lst_2010 <- raster("lst_2010.tif")
+lst_2015 <- raster("lst_2015.tif")
+
+ls()
+
+# list f files:
+rlist <- list.files(pattern="lst")
+rlist
+
+
+import <- lapply(rlist,raster)
+import
+
+
+# par
+par(mfrow=c(2,2))
+plot(lst_2000)
+plot(lst_2005)
+plot(lst_2010)
+plot(lst_2015)
