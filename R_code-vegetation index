@@ -63,6 +63,7 @@ plotRGB(imagedefor2, 1, 2, 3, stretch="lin")
 par(mfrow=c(2,2))
 plotRGB(imagedefor, 1, 2, 3, stretch="lin")
 plotRGB(imagedefor2, 1, 2, 3, stretch="lin")
+dev.off()
 
 #Exercise: calculate DVI from 1992
 dvi1992 = imagedefor[[1]] - imagedefor[[2]]
@@ -73,7 +74,7 @@ cl <- colorRampPalette(c("darkorange", "yellow", "blueviolet", "cyan1"))(100)
 plot(dvi1992, col= cl)
 
 #Exercise: calculate DVI from 2006
-dvi2006 = imagedefor2[[2]] - imagedefor2[[1]]
+dvi2006 = imagedefor2[[1]] - imagedefor2[[2]]
 plot(dvi2006)
 
 cl <- colorRampPalette(c("darkorange", "yellow", "blueviolet", "cyan1"))(100)
@@ -87,12 +88,12 @@ cl <- colorRampPalette(c("blue", "white", "red"))(100)
 plot(differencedvi, col= cl)
 
 #--- NDVI 1992 
-ndvi1992  = dvi1992 / (image_1992[[1]] + image_1992[[2]]) #standardizzazione 
+ndvi1992  = dvi1992 / (imagedefor[[1]] + imagedefor2[[2]]) #standardizzazione 
 plot(ndvi1992)
 
 plot(ndvi1992, col = cl)
 #--- NDVI 2006 
-ndvi_2006 = dvi2006 / (image_2006[[1]] + image_2006[[2]]) 
+ndvi_2006 = dvi2006 / (imagedefor[[1]] + imagedefor2[[2]]) 
 plot(ndvi_2006)
 
 plot(ndvi_2006, col = cl)
