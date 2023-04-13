@@ -50,3 +50,40 @@ plot(dift)
 
 cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
 plot(dift, col=cl)
+
+#---- Exercise 2: European N02 
+library(raster)
+
+setwd("C:/lab/en")
+
+#importing a file 
+en01 <- raster("EN_0001.png")
+
+cl <- colorRampPalette(c('red','orange','yellow'))(100) #
+
+plot(en01, col=cl)
+
+#mettere la parte mancante 
+
+# Exercise: plot EN01 besides EN13
+par(mfrow=c(1,2))
+plot(EN[[1]], col=cl)
+plot(EN[[13]], col=cl)
+
+# Check 2 
+difcheck <- - EN[[1]]
+difcheck 
+# or:
+en113 <- stack(EN[[1]], EN[[13]])
+plot(EN113, col=cl)
+
+# let's make the difference:
+difen <-  EN[[1]] - EN[[13]]
+cldif <- colorRampPalette(c('blue','white','red'))(100) #
+plot(difen, col=cldif)
+
+# plotRGB of three files together
+plotRGB(EN, r=1, g=7, b=13, stretch="lin")
+plotRGB(EN, r=1, g=7, b=13, stretch="hist")
+dev.off
+
