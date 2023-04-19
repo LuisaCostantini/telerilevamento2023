@@ -1,30 +1,36 @@
+# Time series analysis...
+
+# Greenland increase of temperature
+# Data and code from Emanuela Cosma
+
 # R code for importing and analysing several image 
 library("raster")
 
 #Import the working directory 
 
-setwd("C:/lab/Greenland") # Windows
+setwd("C:/lab/Greenland") 
+
 lst_2000 <- raster("lst_2000.tif")
 plot(lst_2000)
 
-#Exercise: import all the data 
+#Exercise: import all the data (tif images)
 lst_2000 <- raster("lst_2000.tif")
 lst_2005 <- raster("lst_2005.tif")
 lst_2010 <- raster("lst_2010.tif")
 lst_2015 <- raster("lst_2015.tif")
 
-ls()
+ls() # list of objects imported and loaded
 
 # list f files:
 rlist <- list.files(pattern="lst")
 rlist
 
-
+# to apply a function to many files of a list
 import <- lapply(rlist,raster)
 import
 
 
-# par
+# plotting in a multiframe
 par(mfrow=c(2,2))
 plot(lst_2000)
 plot(lst_2005)
@@ -42,7 +48,9 @@ plotRGB(TGr, 4, 3, 2, stretch="Lin")
 # levelplot(TGr)
 cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
 plot(TGr, col=cl)
-#Difference : 
+dev.off()
+
+#Difference between 2005 and 2000 : 
 
 dift <- TGr[[2]] - TGr [[1]]
 dift  = TGr [[2]] - TGr [[1]]
@@ -51,7 +59,20 @@ plot(dift)
 cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
 plot(dift, col=cl)
 
+# levelplot(TGr)
+cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
+plot(TGr, col = cl)
+
+levelplot(TGr, col.regions = cl,
+          names.attr = c("July 2000","July 2005", "July 2010", "July 2015"))
+levelplot(TGr, col.regions = cl, main = "LST variation in time",
+          names.attr = c("July 2000","July 2005", "July 2010", "July 2015"))
+
+dev.off()
+
+# NO2 decrease during the lockdown period ----
 #---- Exercise 2: European N02 
+
 library(raster)
 
 setwd("C:/lab/en")
