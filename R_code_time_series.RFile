@@ -77,14 +77,38 @@ library(raster)
 
 setwd("C:/lab/en")
 
-#importing a file 
+#importing a file (first image file)
 en01 <- raster("EN_0001.png")
 
 cl <- colorRampPalette(c('red','orange','yellow'))(100) #
 
-plot(en01, col=cl)
+plot(en01, col=cl) # ->  it's January, before the lockdown
 
-#mettere la parte mancante 
+en13 <- raster("EN_0013.png")
+
+plot(en13, col = cl) # <- it's March, after lockdown began
+
+# Let's import the whole set (altogether!)
+
+# Exercise: import the whole as in the Greenland example
+# by the following steps: list.files, lapply, stack
+
+rlist <- list.files(pattern="EN")
+
+rlist
+
+# lapply(X, FUN)
+rimp <- lapply(rlist, raster)
+
+
+import <- lapply(rlist,raster)
+import
+
+# stack
+EN <- stack(import)
+EN
+
+plot(EN) #plot everything
 
 # Exercise: plot EN01 besides EN13
 par(mfrow=c(1,2))
