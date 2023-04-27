@@ -33,6 +33,7 @@ plot(sd3, col=clsd)
 
 # plotting with ggplot
 sd3d <- as.data.frame(sd3, xy=T)
+sd3d
 
 ggplot() +
   geom_raster(sd3d, mapping=aes(x=x, y=y, fill=layer))
