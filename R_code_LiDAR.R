@@ -4,6 +4,12 @@
 #Set working directory
 setwd("C:/lab/dati")
 
+library(raster) #"Geographic Data Analysis and Modeling"
+library(rgdal) #"Geospatial Data Abstraction Library"
+library(viridis)
+library(ggplot2)
+library(patchwork)
+
 # load dsm 2013
 dsm_2013 <- raster("C:/lab/dati/2013Elevation_DigitalElevationModel-0.5m.tif")
 #dsm modello digitale solito : dei solidi che escono dal terreno 
@@ -67,5 +73,42 @@ chm_2013d <- as.data.frame(chm_2013, xy=T)
 
 head(chm_2013d)
 
-#
+chm_2013
 
+plot(chm_2013)
+
+names(chm_2013d)
+
+#plottiamo chm 
+ggplot() +
+geom_raster(chm_2013d, mapping=aes(x=x, y=y, fill=layer)) +
+scale_fill_viridis() +
+ggtitle("chm 2013")
+
+#with inferno 
+ggplot() +
+  geom_raster(chm_2013d, mapping=aes(x=x, y=y, fill=layer)) +
+  scale_fill_viridis(option = "inferno") +
+  ggtitle("chm 2013")
+
+#save the CHM on computer
+writeRaster(chm_2013,"chm_2013_San_genesio.tif")
+
+#ora con patchwork plottiamoli tutti e 3 insieme (dsm,dtm,chm)
+p1 <- ggplot() +
+  geom_raster(dsm_2013d, mapping =aes(x=x, y=y, fill= X2013Elevation_DigitalElevationModel.0.5m)) +
+  scale_fill_viridis() +
+  ggtitle(" X2013Elevation_DigitalElevationModel.0.5m")
+
+p2 <- ggplot() +
+  geom_raster(dtm_2013d, mapping =aes(x=x, y=y, fill=  X2013Elevation_DigitalTerrainModel.0.5m)) +
+  scale_fill_viridis(option = "magma") +
+  ggtitle(" X2013Elevation_DigitalTerrainModel.0.5m")
+
+p3 <- ggplot() +
+  geom_raster(chm_2013d, mapping=aes(x=x, y=y, fill=layer)) +
+  scale_fill_viridis() +
+  ggtitle("chm 2013")
+
+# with patchwork:
+p1 + p2 + p3
