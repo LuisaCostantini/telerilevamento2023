@@ -1,12 +1,15 @@
-#Calculating specctral index 
+#Vegetation indices : 
+
+#Calculating spectral index 
 
 library(raster) 
 
-#Import and setting working directory
+#Import and setting working directory in Windows
 
 setwd("C:/lab/")
 
-#Exercise: import defor1_.png
+#Exercise: import defor1_.png (from 1992) 
+
 imagedefor <- brick("defor1_.png")
 
 imagedefor
@@ -16,20 +19,23 @@ plot(imagedefor)
 #Exercise: plot the image via plotRGB 
 plotRGB(imagedefor, 1, 2, 3, stretch="lin")
 
-#What is NIR? 
-#NIR = 1 
+plotRGB(imagedefor, 4, 3, 2, stretch="lin")
+
+#What is NIR? NIR is red since the image is red
+# NIR = 1 
 # RED = 2 
 # GREEN = 3 
 
-plotRGB(imagedefor, 4, 3, 2, stretch="lin")
 #Export: 1,2,3
 
 #Exercise: calculate DVI for 1992 
-dvi1992 = imagedefor[[1]] - imagedefor[[2]]
-
+dvi1992 = imagedefor[[1]] - imagedefor[[2]] # NIR - red
 dvi1992
+
+#Plot the DVI 
 plot(dvi1992)
 
+#Colour palette
 cl <- colorRampPalette(c("darkblue", "yellow", "red", "black"))(100)
 plot(dvi1992, col= cl)
 
