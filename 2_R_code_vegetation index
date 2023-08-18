@@ -37,43 +37,30 @@ plot(dvi1992)
 
 #Colour palette
 cl <- colorRampPalette(c("darkblue", "yellow", "red", "black"))(100)
-plot(dvi1992, col= cl)
+plot(dvi1992, col= cl) # the darker the red the healthier the vegetation
 
-library(raster) 
-
-#Import and setting working directory
-
-setwd("C:/lab/")
-
-#Exercise: import defor1_.png
-imagedefor <- brick("defor1_.png")
-
-imagedefor
-
-plot(imagedefor)
-plotRGB(imagedefor, 1, 2, 3, stretch="lin")
-
-#Import the most recent image
-
+#Import the most recent image (from 2006)
 imagedefor2 <- brick("defor2_.png")
+imagedefor2
+
+# Plot the image from 2006
 plot(imagedefor2)
 
 plotRGB(imagedefor2, 1, 2, 3, stretch= "lin")
 
 #Exercise: plot the image from 1992 ontop of that of 2006 
-
 par(mfrow=c(2,1)
 plotRGB(imagedefor, 1, 2, 3, stretch="lin")
 plotRGB(imagedefor2, 1, 2, 3, stretch="lin")
 
-par(mfrow=c(2,2))
+# Plot the image from 1992 beside that of 2006
+par(mfrow=c(2,2)) 
 plotRGB(imagedefor, 1, 2, 3, stretch="lin")
 plotRGB(imagedefor2, 1, 2, 3, stretch="lin")
 dev.off()
 
 #Exercise: calculate DVI from 1992
 dvi1992 = imagedefor[[1]] - imagedefor[[2]]
-
 plot(dvi1992)
 
 cl <- colorRampPalette(c("darkorange", "yellow", "blueviolet", "cyan1"))(100)
@@ -86,18 +73,19 @@ plot(dvi2006)
 cl <- colorRampPalette(c("darkorange", "yellow", "blueviolet", "cyan1"))(100)
 plot(2006, col= cl)
 
-#Multitemporal analysis
+#Multitemporal analysis = calculate the difference of DVI from 1992 to 2006
 differencedvi = dvi1992 - dvi2006
-
 cl <- colorRampPalette(c("blue", "white", "red"))(100)
-
 plot(differencedvi, col= cl)
+# the higher the difference the bigger the deforestation, if the difference is negative there is a gain in forest cover
 
+# NDVI = Normalized Difference Vegetation Index
 #--- NDVI 1992 
 ndvi1992  = dvi1992 / (imagedefor[[1]] + imagedefor2[[2]]) #standardizzazione 
-plot(ndvi1992)
 
+plot(ndvi1992)
 plot(ndvi1992, col = cl)
+
 #--- NDVI 2006 
 ndvi_2006 = dvi2006 / (imagedefor[[1]] + imagedefor2[[2]]) 
 plot(ndvi_2006)
