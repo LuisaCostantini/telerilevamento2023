@@ -120,7 +120,7 @@ plotRGB(image_1988, r=4, g=3, b=2, stretch="Lin")
 
 plotRGB(image_1988, 4, 3, 2, stretch="Lin")
 
-# multiframe
+# multiframe (to compare the 2011 and 1988 image on false-colored vegetation) 
 par(mfrow=c(2,1))
 plotRGB(image_1988, 4, 3, 2, stretch="Lin")
 plotRGB(image, 4, 3, 2, stretch="Lin")
