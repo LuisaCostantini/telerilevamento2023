@@ -59,16 +59,23 @@ percentages #count columns are the perc frequencies
 gc <- brick("dolansprings_oli_2013088_canyon_lrg.jpg")
 gc
 
-# rosso = 1
-# verde = 2
-# blu = 3
+# red = 1 
+# green = 2 
+# blue = 3
 
 plotRGB(gc, r=1, g=2, b=3, stretch="lin")
 
-# change the stretch to histogram stretching
+# Change the stretch to histogram stretching
 plotRGB(gc, r=1, g=2, b=3, stretch="hist")
 
-# classification
+# The image is quite big; so crop it!
+gc_crop <- crop(gc, drawExtent())
+plotRGB(gc_crop, 1, 2, 3, stretch = "lin")
+
+ncell(gc)   # n of pixels of the original image
+ncell(gc_crop)   # n of pixels of the cropped image
+
+# Classification :
 
 # 1. Get values
 singlenr <- getValues(gc)
@@ -81,9 +88,15 @@ kcluster
 # 3. Set values
 gcclass <- setValues(gc[[1]], kcluster$cluster) # assign new values to a raster object
 
+# Plot with colour palette
 cl <- colorRampPalette(c('yellow','black','red'))(100)
 plot(gcclass, col=cl)
-#*
+
+# class 1: volcanic rocks
+# class 2: sandstone
+# class 3: conglomerates
+
 frequencies <- freq(gcclass)
 tot = 58076148
 percentages = frequencies * 100 /  tot
+percentages 
