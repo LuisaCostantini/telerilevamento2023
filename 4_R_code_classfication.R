@@ -53,3 +53,37 @@ frequencies
 tot <- 2221440 # function for the total number of pixels/cells of an image
 percentages <- round((frequencies*100)/tot, digits = 5)
 percentages #count columns are the perc frequencies
+
+#DAY 2 
+#---- GRAND CANYON ----
+gc <- brick("dolansprings_oli_2013088_canyon_lrg.jpg")
+gc
+
+# rosso = 1
+# verde = 2
+# blu = 3
+
+plotRGB(gc, r=1, g=2, b=3, stretch="lin")
+
+# change the stretch to histogram stretching
+plotRGB(gc, r=1, g=2, b=3, stretch="hist")
+
+# classification
+
+# 1. Get values
+singlenr <- getValues(gc)
+singlenr
+
+# 2. Classify
+kcluster <- kmeans(singlenr, centers = 3)
+kcluster
+
+# 3. Set values
+gcclass <- setValues(gc[[1]], kcluster$cluster) # assign new values to a raster object
+
+cl <- colorRampPalette(c('yellow','black','red'))(100)
+plot(gcclass, col=cl)
+#*
+frequencies <- freq(gcclass)
+tot = 58076148
+percentages = frequencies * 100 /  tot
