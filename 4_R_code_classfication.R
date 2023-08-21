@@ -50,6 +50,6 @@ plot(soclass, col=cl)
 # What is the pixel size of high energy level? Talking about frequencies
 frequencies <- freq(sun_class)
 frequencies
-tot <- 2221440
+tot <- 2221440 # function for the total number of pixels/cells of an image
 percentages <- round((frequencies*100)/tot, digits = 5)
-percentages
+percentages #count columns are the perc frequencies
