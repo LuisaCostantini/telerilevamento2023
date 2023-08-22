@@ -101,7 +101,7 @@ tot = 58076148
 percentages = frequencies * 100 /  tot
 percentages 
 
-# Exercise: classify the map with 4 classes
+#Exercise: classify the map with 4 classes
 singlenr_2 <- getValues(gc_crop)
 singlenr_2
 
