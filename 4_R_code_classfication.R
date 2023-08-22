@@ -100,3 +100,21 @@ frequencies <- freq(gcclass)
 tot = 58076148
 percentages = frequencies * 100 /  tot
 percentages 
+
+# Exercise: classify the map with 4 classes
+singlenr_2 <- getValues(gc_crop)
+singlenr_2
+
+kcluster_2 <- kmeans(singlenr_2, centers = 4)
+kcluster_2
+
+gcclass_2 <- setValues(gc_crop[[1]], kcluster_2$cluster)
+
+cl <- colorRampPalette(c('yellow','black','red', 'blue'))(100)
+plot(gcclass_2, col=cl)
+
+frequencies <- freq(gcclass_2)
+frequencies
+tot <- ncell(gcclass_2)
+percentages = frequencies * 100 /  tot
+percentages
