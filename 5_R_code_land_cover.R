@@ -1,26 +1,32 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Codespaces
-#R code land cover 
+#---- LAND COVER 
+
 library(raster)
+
 # install.packages("ggplot2")
 library(ggplot2) # for ggplot graphs
+
 # install.packages("patchwork")
 library(patchwork) # for multiframes with ggplot2
 
-# setwd("C:/lab/") # Windows
+# Set the working directory in Windows
+setwd("C:/lab/") # Windows
 
+# Load the data about deforestation
 defor1 <- brick("defor1_.png")
+plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
+
 defor2 <- brick("defor2_.png")
+plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
 
 # NIR 1, RED 2, GREEN 3
 
+# Plot the image in a multiframe
 par(mfrow=c(2,1))
 plotRGB(defor1, 1, 2, 3, stretch="lin")
 plotRGB(defor2, 1, 2, 3, stretch="lin")
 
+# ----Unsupervised classification (1992 image) 
+# defor1
 
 # 1. Get all the single values
 singlenr1 <- getValues(defor1)
@@ -33,6 +39,7 @@ kcluster1
 # 3. Recreating an image
 defor1class <- setValues(defor1[[1]], kcluster1$cluster) # assign new values to a raster object
 
+# Plot the classified image
 plot(defor1class)
 
 # class1: forest
@@ -56,14 +63,13 @@ plot(defor2class)
 # class1: forest
 # class2: bare soil
 
-#--- multiframe
+# Multiframe
 
 par(mfrow=c(2,1))
 plot(defor1class)
 plot(defor2class)
 
-#--- Class percentages
-
+# Class percentages 1992
 frequencies1 <- freq(defor1class)
 frequencies1
 
@@ -76,8 +82,7 @@ percentages1
 # forest: 89.75
 # bare soil: 10.25
 
-#---- 2006
-
+# Class percentages 2006
 frequencies2 <- freq(defor2class)
 frequencies2
 
@@ -90,14 +95,16 @@ percentages2
 # forest: 52.07
 # bare soil: 47.93
 
-#--- final table
+# Final table
 cover <- c("Forest","Bare soil")
 percent1992 <- c(89.75, 10.25)
 percent2006 <- c(52.07, 47.93)
 
+# build a dataframe
 percentages <- data.frame(cover, percent1992, percent2006)
 percentages
 
+#let's plot them!
 #--- ggplot2
 
 ggplot(percentages, aes(x=cover, y=percent1992, color=cover)) +
@@ -115,7 +122,7 @@ p2 <- ggplot(percentages, aes(x=cover, y=percent2006, color=cover)) +
 geom_bar(stat="identity", fill="white") + 
 ggtitle("Year 2006")
 
-p1 + p2
+p1 + p2 # put together the plots
 
 #----- same range! Do not lie with stats!
 
@@ -129,7 +136,8 @@ geom_bar(stat="identity", fill="white") +
 ggtitle("Year 2006") +
 ylim(c(0,100))
 
-p1 + p2
+p1 + p2 
+# in order to standardize the y axes of the 2 plots we use ylim() function
 
 
 
