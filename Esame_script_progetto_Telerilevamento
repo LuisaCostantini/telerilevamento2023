@@ -22,8 +22,7 @@ setwd("C:/lab/sentinel2")
 rlist_2018 <- list.files(pattern = "T33TVG_20180702T095031_B")
 rlist_2018
 
-# poi posso importare tutti i file contemporaneamente con lapply e si applica la funzione 
-# raster all'intera lista
+#Importo tutti i file contemporaneamente con lapply e applico "raster" all'intera lista
 import_2018 <- lapply(rlist_2018, raster)
 import_2018
 
@@ -71,8 +70,7 @@ dev.off()
 rlist_2019 <- list.files(pattern = "T33TVG_20190806T095031_B")
 rlist_2019
 
-# poi posso importare tutti i file contemporaneamente con lapply e si applica la funzione 
-# raster all'intera lista
+#Importo tutti i file contemporaneamente con lapply e applico "raster" all'intera lista
 import_2019 <- lapply(rlist_2019, raster)
 import_2019
 
@@ -120,8 +118,7 @@ dev.off()
 rlist_2020 <- list.files(pattern = "T33TVG_20200731T095041_B")
 rlist_2020
 
-# poi posso importare tutti i file contemporaneamente con lapply e si applica la funzione 
-# raster all'intera lista
+#Importo tutti i file contemporaneamente con lapply e applico "raster" all'intera lista
 import_2020 <- lapply(rlist_2020, raster)
 import_2020
 
@@ -169,8 +166,7 @@ dev.off()
 rlist_2021 <- list.files(pattern = "T33TVG_20210706T095031_B")
 rlist_2021
 
-# poi posso importare tutti i file contemporaneamente con lapply e si applica la funzione 
-# raster all'intera lista
+#Importo tutti i file contemporaneamente con lapply e applico "raster" all'intera lista
 import_2021 <- lapply(rlist_2021, raster)
 import_2021
 
@@ -218,8 +214,7 @@ dev.off()
 rlist_2022 <- list.files(pattern = "T33TVG_20220721T095041_B")
 rlist_2022
 
-# poi posso importare tutti i file contemporaneamente con lapply e si applica la funzione 
-# raster all'intera lista
+#Importo tutti i file contemporaneamente con lapply e applico "raster" all'intera lista
 import_2022 <- lapply(rlist_2022, raster)
 import_2022
 
@@ -267,8 +262,7 @@ dev.off()
 rlist_2023 <- list.files(pattern = "T33TVG_20230815T095031_B")
 rlist_2023
 
-# poi posso importare tutti i file contemporaneamente con lapply e si applica la funzione 
-# raster all'intera lista
+#Importo tutti i file contemporaneamente con lapply e applico "raster" all'intera lista
 import_2023 <- lapply(rlist_2023, raster)
 import_2023
 
