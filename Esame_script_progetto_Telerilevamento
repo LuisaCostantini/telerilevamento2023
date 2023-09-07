@@ -1,0 +1,721 @@
+#----PROGETTO DI TELERILEVAMENTO GEO-ECOLOGICO
+# Monitoraggo della vegetazione sulla Majella e cima del Morrone post incendio del 2017
+
+
+#Caricamento dei pacchetti
+library(raster)
+library(ggplot2)
+library(patchwork)
+library(viridis)
+library(rgdal)
+
+# Imposto la working directory
+setwd("C:/lab/sentinel2")
+
+
+#1---- 
+#IMPORTO E VISUALIZZO LE IMMAGINI (Sentinel2)
+
+# IMMAGINI del 2018
+
+#Creo una lista (faccio l'elenco dei file che si trovano all'interno della cartella)
+rlist_2018 <- list.files(pattern = "T33TVG_20180702T095031_B")
+rlist_2018
+
+# poi posso importare tutti i file contemporaneamente con lapply e si applica la funzione 
+# raster all'intera lista
+import_2018 <- lapply(rlist_2018, raster)
+import_2018
+
+
+# Con stack: unione di tutte le bande presenti nella lista in un solo oggetto
+imag_2018 <- stack(import_2018)
+
+#Per visualizzare le informazioni
+imag_2018
+
+#Nomi delle bande
+# Banda 2 = Blu
+# Banda 3 = Verde
+# Banda 4 = Rosso
+# Banda 8a = NIR
+
+# Plotto l'immagine e cerco la zona di interesse 
+plot(imag_2018)
+
+# Così riesco a visualizzarla meglio
+plot(imag_2018[[1]])
+
+# Ritaglio con la funzione crop l'area di mio interesse 
+ext <- c(400020,450000,4640000,4680000)
+majella_2018 <- crop(imag_2018, ext)
+
+# Plotto l'immagine con RGB 
+plot(majella_2018)
+par(mfrow= c(1,2))
+plotRGB(majella_2018, 3,2,1, stretch = "Lin") #colori  naturali 
+plotRGB(majella_2018, 4,3,2, stretch = "Lin") #NIR 
+
+#Per plottare correttamente le bande faccio così
+# Banda 4 = NIR 
+# Banda 3 = Rosso
+# Banda 2 = Verde 
+# Banda 1 = Blue 
+
+#Esporto in pdf
+pdf("Majella_2018.pdf")
+dev.off()
+
+# IMMAGINI del 2019 
+#Creo una lista (faccio l'elenco dei file che si trovano all'interno della cartella)
+rlist_2019 <- list.files(pattern = "T33TVG_20190806T095031_B")
+rlist_2019
+
+# poi posso importare tutti i file contemporaneamente con lapply e si applica la funzione 
+# raster all'intera lista
+import_2019 <- lapply(rlist_2019, raster)
+import_2019
+
+# Con stack: unione di tutte le bande presenti nella lista in un solo oggetto
+imag_2019 <- stack(import_2019)
+
+#Per visualizzare le informazioni
+imag_2019
+
+#Nomi delle bande
+# Banda 2 = Blu
+# Banda 3 = Verde
+# Banda 4 = Rosso
+# Banda 8a = NIR
+
+# Plotto l'immagine e cerco la zona di interesse 
+plot(imag_2019)
+
+# Così riesco a visualizzarla meglio
+plot(imag_2019[[1]])
+
+# Ritaglio con la funzione crop l'area di mio interesse 
+ext <- c(400020,450000,4640000,4680000)
+majella_2019 <- crop(imag_2019, ext)
+
+# Plotto l'immagine con RGB 
+plot(majella_2019)
+par(mfrow= c(1,2))
+plotRGB(majella_2019, 3,2,1, stretch = "Lin") #colori naturali
+plotRGB(majella_2019, 4,3,2, stretch = "Lin") #NIR 
+
+#Per plottare correttamente le bande faccio così
+# Banda 4 = NIR 
+# Banda 3 = Rosso
+# Banda 2 = Verde 
+# Banda 1 = Blue 
+
+#Esporto in pdf
+pdf("Majella_2019.pdf")
+dev.off()
+
+# IMMAGINI 2020
+
+#Creo una lista (faccio l'elenco dei file che si trovano all'interno della cartella)
+rlist_2020 <- list.files(pattern = "T33TVG_20200731T095041_B")
+rlist_2020
+
+# poi posso importare tutti i file contemporaneamente con lapply e si applica la funzione 
+# raster all'intera lista
+import_2020 <- lapply(rlist_2020, raster)
+import_2020
+
+# Con stack: unione di tutte le bande presenti nella lista in un solo oggetto
+imag_2020 <- stack(import_2020)
+
+#Per visualizzare le informazioni
+imag_2020
+
+#Nomi delle bande
+# Banda 2 = Blu
+# Banda 3 = Verde
+# Banda 4 = Rosso
+# Banda 8a = NIR
+
+# Plotto l'immagine e cerco la zona di interesse 
+plot(imag_2020)
+
+# Così riesco a visualizzarla meglio
+plot(imag_2020[[1]])
+
+# Ritaglio con la funzione crop l'area di mio interesse 
+ext <- c(400020,450000,4640000,4680000)
+majella_2020 <- crop(imag_2020, ext)
+
+# Plotto l'immagine con RGB 
+plot(majella_2020)
+par(mfrow= c(1,2))
+plotRGB(majella_2020, 3,2,1, stretch = "Lin") #colori naturali
+plotRGB(majella_2020, 4,3,2, stretch = "Lin") #NIR 
+
+#Per plottare correttamente le bande faccio così
+# Banda 4 = NIR 
+# Banda 3 = Rosso
+# Banda 2 = Verde 
+# Banda 1 = Blue 
+
+#Esporto in pdf
+pdf("Majella_2020.pdf")
+dev.off()
+
+# IMMAGINI 2021 
+
+#Creo una lista (faccio l'elenco dei file che si trovano all'interno della cartella)
+rlist_2021 <- list.files(pattern = "T33TVG_20210706T095031_B")
+rlist_2021
+
+# poi posso importare tutti i file contemporaneamente con lapply e si applica la funzione 
+# raster all'intera lista
+import_2021 <- lapply(rlist_2021, raster)
+import_2021
+
+# Con stack: unione di tutte le bande presenti nella lista in un solo oggetto
+imag_2021 <- stack(import_2021)
+
+#Per visualizzare le informazioni
+imag_2021
+
+#Nomi delle bande
+# Banda 2 = Blu
+# Banda 3 = Verde
+# Banda 4 = Rosso
+# Banda 8a = NIR
+
+# Plotto l'immagine e cerco la zona di interesse 
+plot(imag_2021)
+
+# Così riesco a visualizzarla meglio
+plot(imag_2021[[1]])
+
+# Ritaglio con la funzione crop l'area di mio interesse 
+ext <- c(400020,450000,4640000,4680000)
+majella_2021 <- crop(imag_2021, ext)
+
+# Plotto l'immagine con RGB 
+plot(majella_2021)
+par(mfrow= c(1,2))
+plotRGB(majella_2021, 3,2,1, stretch = "Lin") #colori naturali
+plotRGB(majella_2021, 4,3,2, stretch = "Lin") #NIR 
+
+#Per plottare correttamente le bande faccio così
+# Banda 4 = NIR 
+# Banda 3 = Rosso
+# Banda 2 = Verde 
+# Banda 1 = Blue 
+
+#Esporto in pdf
+pdf("Majella_2021.pdf")
+dev.off()
+
+# IMMAGINI 2022
+
+#Creo una lista (faccio l'elenco dei file che si trovano all'interno della cartella)
+rlist_2022 <- list.files(pattern = "T33TVG_20220721T095041_B")
+rlist_2022
+
+# poi posso importare tutti i file contemporaneamente con lapply e si applica la funzione 
+# raster all'intera lista
+import_2022 <- lapply(rlist_2022, raster)
+import_2022
+
+# Con stack: unione di tutte le bande presenti nella lista in un solo oggetto
+imag_2022 <- stack(import_2022)
+
+#Per visualizzare le informazioni
+imag_2022
+
+#Nomi delle bande
+# Banda 2 = Blu
+# Banda 3 = Verde
+# Banda 4 = Rosso
+# Banda 8a = NIR
+
+# Plotto l'immagine e cerco la zona di interesse 
+plot(imag_2022)
+
+# Così riesco a visualizzarla meglio
+plot(imag_2022[[1]])
+
+# Ritaglio con la funzione crop l'area di mio interesse 
+ext <- c(400020,450000,4640000,4680000)
+majella_2022 <- crop(imag_2022, ext)
+
+# Plotto l'immagine con RGB 
+plot(majella_2022)
+par(mfrow= c(1,2))
+plotRGB(majella_2022, 3,2,1, stretch = "Lin") #colori naturali
+plotRGB(majella_2022, 4,3,2, stretch = "Lin") #NIR 
+
+#Per plottare correttamente le bande faccio così
+# Banda 4 = NIR 
+# Banda 3 = Rosso
+# Banda 2 = Verde 
+# Banda 1 = Blue 
+
+#Esporto in pdf
+pdf("Majella_2022.pdf")
+dev.off()
+
+# IMMAGINI 2023 
+
+#Creo una lista (faccio l'elenco dei file che si trovano all'interno della cartella)
+rlist_2023 <- list.files(pattern = "T33TVG_20230815T095031_B")
+rlist_2023
+
+# poi posso importare tutti i file contemporaneamente con lapply e si applica la funzione 
+# raster all'intera lista
+import_2023 <- lapply(rlist_2023, raster)
+import_2023
+
+# Con stack: unione di tutte le bande presenti nella lista in un solo oggetto
+imag_2023 <- stack(import_2023)
+
+#Per visualizzare le informazioni
+imag_2023
+
+#Nomi delle bande 
+# Banda 2 = Blu
+# Banda 3 = Verde
+# Banda 4 = Rosso
+# Banda 8a = NIR
+
+# Plotto l'immagine e cerco la zona di interesse 
+plot(imag_2023)
+
+# Così riesco a visualizzarla meglio
+plot(imag_2023[[1]])
+
+# Ritaglio con la funzione crop l'area di mio interesse 
+ext <- c(400020,450000,4640000,4680000)
+majella_2023 <- crop(imag_2023, ext)
+
+# Plotto l'immagine con RGB 
+plot(majella_2023)
+par(mfrow= c(1,2))
+plotRGB(majella_2023, 3,2,1, stretch = "Lin") #colori naturali
+plotRGB(majella_2023, 4,3,2, stretch = "Lin") #NIR 
+
+#Per plottare correttamente le bande faccio così
+# Banda 4 = NIR 
+# Banda 3 = Rosso
+# Banda 2 = Verde 
+# Banda 1 = Blue 
+
+#Esporto in pdf
+pdf("Majella_2023.pdf")
+dev.off()
+
+#2---- 
+#PLOTTO LE 6 IMMAGINI (DAL 2018 AL 2023) 
+
+# Colori reali
+par(mfrow = c(2,3))
+plotRGB(majella_2018, 3,2,1, stretch = "lin", main = "2018TC")
+plotRGB(majella_2019, 3,2,1, stretch = "lin", main = "2019TC")
+plotRGB(majella_2020, 3,2,1, stretch = "lin", main = "2020TC")
+plotRGB(majella_2021, 3,2,1, stretch = "lin", main = "2021TC")
+plotRGB(majella_2022, 3,2,1, stretch = "lin", main = "2022TC")
+plotRGB(majella_2023, 3,2,1, stretch = "lin", main = "2023TC")
+
+#Esporto in pdf
+pdf("6immcolorireali.pdf")
+dev.off()
+
+#  NIR
+par(mfrow = c(2,3))
+plotRGB(majella_2018, 4,3,2, stretch = "lin", main = "2018_NIR")
+plotRGB(majella_2019, 4,3,2, stretch = "lin", main = "2019_NIR")
+plotRGB(majella_2020, 4,3,2, stretch = "lin", main = "2020_NIR")
+plotRGB(majella_2021, 4,3,2, stretch = "lin", main = "2021_NIR")
+plotRGB(majella_2022, 4,3,2, stretch = "lin", main = "2022_NIR")
+plotRGB(majella_2023, 4,3,2, stretch = "lin", main = "2023_NIR")
+
+
+#Esporto in pdf
+pdf("NIR.pdf")
+dev.off()
+
+#3---- 
+#INDICI SPETTRALI 
+
+#Calcolo dell' NDVI (normalized difference vegetation index)
+
+#Prima però calcolo il DVI (Difference Vegetation Index)
+DVI_2018 <- majella_2018[[4]] - majella_2018[[3]]
+DVI_2019 <- majella_2019[[4]] - majella_2019[[3]]
+DVI_2020 <- majella_2020[[4]] - majella_2020[[3]]
+DVI_2021 <- majella_2021[[4]] - majella_2021[[3]]
+DVI_2022 <- majella_2022[[4]] - majella_2022[[3]]
+DVI_2023 <- majella_2023[[4]] - majella_2023[[3]]
+
+# Creazione di una palette di colori
+cl <- colorRampPalette(c("blue","darkorange","aliceblue"))(100)
+
+# Plot DVI
+par(mfrow = c(2,3))
+plot(DVI_2018, col = cl, main = "DVI_2018")
+plot(DVI_2019, col = cl, main = "DVI_2019")
+plot(DVI_2020, col = cl, main = "DVI_2020")
+plot(DVI_2021, col = cl, main = "DVI_2021")
+plot(DVI_2022, col = cl, main = "DVI_2022")
+plot(DVI_2023, col = cl, main = "DVI_2023")
+
+#Esporto in pdf
+pdf("DVI.pdf")
+dev.off()
+
+# NDVI (Normalized Difference Vegetation Index)
+# NDVI = (NIR - rosso) / (NIR + rosso) = DVI / (NIR + rosso)
+NDVI_2018 <- DVI_2018 / (majella_2018[[4]] + majella_2018[[3]])
+NDVI_2019 <- DVI_2019 / (majella_2019[[4]] + majella_2019[[3]])
+NDVI_2020 <- DVI_2020 / (majella_2020[[4]] + majella_2020[[3]])
+NDVI_2021 <- DVI_2021 / (majella_2021[[4]] + majella_2021[[3]])
+NDVI_2022 <- DVI_2022 / (majella_2022[[4]] + majella_2022[[3]])
+NDVI_2023 <- DVI_2023 / (majella_2023[[4]] + majella_2023[[3]])
+
+# Plot NDVI
+par(mfrow = c(2,3))
+plot(NDVI_2018, col = cl, main = "NDVI_2018")
+plot(NDVI_2019, col = cl, main = "NDVI_2019")
+plot(NDVI_2020, col = cl, main = "NDVI_2020")
+plot(NDVI_2021, col = cl, main = "NDVI_2021")
+plot(NDVI_2022, col = cl, main = "NDVI_2022")
+plot(NDVI_2023, col = cl, main = "NDVI_2023")
+
+#Esporto in pdf
+pdf("NDVI.pdf")
+dev.off()
+
+# Calcolo la differenza fra NDVI_2018 e NDVI_2023
+NDVI_def <- NDVI_2018 - NDVI_2023
+
+# Plot di NDVI_def 
+plot(NDVI_def, col = cl, main = "NDVI_def")
+
+#Esporto in pdf
+pdf("NDVIDIFF.pdf")
+dev.off()
+
+# Le parti arancioni sono le  aree con differenza di NDVI fra 2018 e 2023 
+# La parte in "Aliceblue" è la perdita in copertura vegetale dal 2018 al 2023
+# La parte in blue solo le aree con copertura vegetale dal 2018 al 2023 in crescita
+
+#4----
+# PCA (Principal component analysis)
+
+#generatore n° casuali
+set.seed(1)
+
+# Plot
+plot(NDVI_def, xaxt = "n", yaxt = "n")
+
+# Effettuo un campionamento casuale di 10000 pixel 
+sample <- sampleRandom(NDVI_def, 10000)
+
+# Effettuo la PCA 
+pca <- prcomp(sample)
+pca
+
+#Visualizzo le informazioni relative alla PCA
+summary(pca)
+
+# PC map : visualizziamo partendo dall'analisi della pca
+pci <- predict(NDVI_def, pca, index=c(1:3))
+plot(pci)
+plot(pci[[1]])
+
+# Conversione di PC1 in un dataframe
+pc_fin <- as.data.frame(pci[[1]], xy = T)
+pc_fin
+
+#Plotto usando ggplot
+ggplot() + 
+  geom_raster(pc_fin, mapping = aes(x=x, y=y, fill=layer.1))  + 
+  scale_fill_viridis(option="inferno") +
+  labs(title = "PC1")
+
+# Maggior variabilità = valore PC1 più basso
+# Minor variabilità   = valore PC1 più alto
+
+#Esporto in pdf
+pdf("PC1.pdf")
+dev.off()
+
+#5----
+#LAND COVER 
+
+###Classificazione immagini 2018
+
+# Estraggo i valori dalle immagini del 2018
+single_nr_2018 <- getValues(majella_2018)
+single_nr_2018
+
+# Classificazione
+kcluster_2018 <- kmeans(single_nr_2018, centers=2)
+kcluster_2018
+
+# Set dei valori
+majella2018_class <- setValues(majella_2018[[1]], kcluster_2018$cluster)
+
+# Creo una palette di colori
+cl <- colorRampPalette(c('yellow','blue','red'))(100)
+
+# Plot
+plot(majella2018_class, col = cl)
+
+# Calcolo le frequenze
+freq_2018 <- freq(majella2018_class)
+freq_2018
+
+# Calcolo i pixel totali
+tot <- ncell(majella2018_class)
+tot
+
+# Calcolo le percentuali
+perc_2018 <- round((freq_2018 * 100) / tot, digit=5)
+perc_2018
+
+###Classificazione immagini 2019
+
+# Estraggo i valori dalle immagini del 2019
+single_nr_2019 <- getValues(majella_2019)
+single_nr_2019
+
+# Classificazione
+kcluster_2019 <- kmeans(single_nr_2019, centers=2)
+kcluster_2019
+
+# Set dei valori
+majella2019_class <- setValues(majella_2019[[1]], kcluster_2019$cluster)
+
+# Creo una palette di colori
+cl <- colorRampPalette(c('yellow','blue','red'))(100)
+
+# Plot
+plot(majella2019_class, col = cl)
+
+# Calcolo le frequenze
+freq_2019 <- freq(majella2019_class)
+freq_2019
+
+# Calcolo i pixel totali
+tot <- ncell(majella2019_class)
+tot
+
+# Calcolo le percentuali
+perc_2019 <- round((freq_2019 * 100) / tot, digit=5)
+perc_2019
+
+###Classificazione immagini 2020
+
+# Estraggo i valori dalle immagini del 2020
+single_nr_2020 <- getValues(majella_2020)
+single_nr_2020
+
+# Classificazione
+kcluster_2020 <- kmeans(single_nr_2020, centers=2)
+kcluster_2020
+
+# Set dei valori
+majella2020_class <- setValues(majella_2020[[1]], kcluster_2020$cluster)
+
+# Creo una palette di colori
+cl <- colorRampPalette(c('yellow','blue','red'))(100)
+
+# Plot
+plot(majella2020_class, col = cl)
+
+# Calcolo le frequenze
+freq_2020 <- freq(majella2020_class)
+freq_2020
+
+# Calcolo i pixel totali
+tot <- ncell(majella2020_class)
+tot
+
+# Calcolo le percentuali
+perc_2020 <- round((freq_2020 * 100) / tot, digit=5)
+perc_2020
+
+###Classificazione immagini 2021
+
+# Estraggo i valori dalle immagini del 2021
+single_nr_2021 <- getValues(majella_2021)
+single_nr_2021
+
+# Classificazione
+kcluster_2021 <- kmeans(single_nr_2021, centers=2)
+kcluster_2021
+
+# Set dei valori
+majella2021_class <- setValues(majella_2021[[1]], kcluster_2021$cluster)
+
+# Creo una palette di colori
+cl <- colorRampPalette(c('yellow','blue','red'))(100)
+
+# Plot
+plot(majella2021_class, col = cl)
+
+# Calcolo le frequenze
+freq_2021 <- freq(majella2021_class)
+freq_2021
+
+# Calcolo i pixel totali
+tot <- ncell(majella2021_class)
+tot
+
+# Calcolo le percentuali
+perc_2021 <- round((freq_2021 * 100) / tot, digit=5)
+perc_2021
+
+###Classificazione immagini 2022
+
+# Estraggo i valori dalle immagini del 2022
+single_nr_2022 <- getValues(majella_2022)
+single_nr_2022
+
+# Classificazione
+kcluster_2022 <- kmeans(single_nr_2022, centers=2)
+kcluster_2022
+
+# Set dei valori
+majella2022_class <- setValues(majella_2022[[1]], kcluster_2022$cluster)
+
+# Creo una palette di colori
+cl <- colorRampPalette(c('yellow','blue','red'))(100)
+
+# Plot
+plot(majella2022_class, col = cl)
+
+# Calcolo le frequenze
+freq_2022 <- freq(majella2022_class)
+freq_2022
+
+# Calcolo i pixel totali
+tot <- ncell(majella2022_class)
+tot
+
+# Calcolo le percentuali
+perc_2022 <- round((freq_2022 * 100) / tot, digit=5)
+perc_2022
+
+###Classificazione immagini 2023
+
+# Estraggo i valori dalle immagini del 2023
+single_nr_2023 <- getValues(majella_2023)
+single_nr_2023
+
+# Classificazione
+kcluster_2023 <- kmeans(single_nr_2023, centers=2)
+kcluster_2023
+
+# Set dei valori
+majella2023_class <- setValues(majella_2023[[1]], kcluster_2023$cluster)
+
+# Creo una palette di colori
+cl <- colorRampPalette(c('yellow','blue','red'))(100)
+
+# Plot
+plot(majella2023_class, col = cl)
+
+# Calcolo le frequenze
+freq_2023 <- freq(majella2023_class)
+freq_2023
+
+# Calcolo i pixel totali
+tot <- ncell(majella2023_class)
+tot
+
+# Calcolo le percentuali
+perc_2023 <- round((freq_2023 * 100) / tot, digit=5)
+perc_2023
+
+
+# Percentuali finali 
+copertura_vegetale <- c("buona","ridotta/assente")
+perc_2018 <- c(35.90966, 64.09034)
+perc_2019 <- c(55.19437, 44.80563)
+perc_2020 <- c(48.94288, 51.05712)
+perc_2021 <- c(46.78633, 53.21367)
+perc_2022 <- c(50.42629, 49.57371)
+perc_2023 <- c(2.3469, 97.65303)
+
+# Creo un dataframe
+landcover_perc <- data.frame(copertura_vegetale, perc_2018, perc_2019, perc_2020, perc_2021, perc_2022, perc_2023)
+landcover_perc
+
+
+# Plotto i risultati finali con ggplot2
+
+#2018
+p_2018 <- ggplot(landcover_perc, aes(x=copertura_vegetale, y=perc_2018, fill=copertura_vegetale)) + 
+  geom_bar(stat="identity") +
+  ggtitle("Land Cover 2018") + 
+  ylim(c(0,100))
+
+#Salvo in pdf
+pdf("LandCover2018.pdf")
+dev.off()
+
+#2019
+p_2019 <- ggplot(landcover_perc, aes(x=copertura_vegetale, y=perc_2019, fill=copertura_vegetale)) + 
+  geom_bar(stat="identity") +
+  ggtitle("Land Cover 2019") + 
+  ylim(c(0,100))
+
+#Salvo in pdf
+pdf("LandCover2019.pdf")
+dev.off()
+
+#2020
+p_2020 <- ggplot(landcover_perc, aes(x=copertura_vegetale, y=perc_2020, fill=copertura_vegetale)) + 
+  geom_bar(stat="identity") +
+  ggtitle("Land Cover 2020") + 
+  ylim(c(0,100))
+
+#Salvo in pdf
+pdf("LandCover2020.pdf")
+dev.off()
+
+#2021
+p_2021 <- ggplot(landcover_perc, aes(x=copertura_vegetale, y=perc_2021, fill=copertura_vegetale)) + 
+  geom_bar(stat="identity") +
+  ggtitle("Land Cover 2021") + 
+  ylim(c(0,100))
+
+#Salvo in pdf
+pdf("LandCover2021.pdf")
+dev.off()
+
+#2022
+p_2022 <- ggplot(landcover_perc, aes(x=copertura_vegetale, y=perc_2022, fill=copertura_vegetale)) + 
+  geom_bar(stat="identity") +
+  ggtitle("Land Cover 2022") + 
+  ylim(c(0,100))
+
+#Salvo in pdf
+pdf("LandCover2022.pdf")
+dev.off()
+
+#2023
+p_2023 <- ggplot(landcover_perc, aes(x=copertura_vegetale, y=perc_2023, fill=copertura_vegetale)) + 
+  geom_bar(stat="identity") +
+  ggtitle("Land Cover 2023") + 
+  ylim(c(0,100))
+
+#Salvo in pdf
+pdf("LandCover2023.pdf")
+dev.off()
+
+# Unione dei 6 plot in un unico grafico 
+final_plot <- p_2018 + p_2019 + p_2020 + p_2021 + p_2022 + p_2023
+final_plot
+
+#Salvo in pdf
+pdf("Finalplot.pdf")
+dev.off()
