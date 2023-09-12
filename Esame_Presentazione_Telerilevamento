@@ -1,0 +1,266 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{caption}
+
+\usetheme{Madrid}
+\mode<presentation>
+
+\definecolor{myblue}{HTML}{00a1e5}
+
+
+\usecolortheme{crane}
+\usefonttheme{serif}
+\usepackage[italian]{babel}
+\usepackage{subfig}
+
+
+\title{Monitoraggio della vegetazione sulla Majella e Monte Morrone}
+\subtitle{Progetto di Telerilevamento Geo-Ecologico - 9345}
+\author{Luisa Costantini}
+\date{Settembre 2023}
+\institute{Università di Bologna}
+\begin{document}
+\maketitle
+
+\begin{frame}
+\frametitle{}
+\tableofcontents
+\end{frame}
+
+
+
+% Sezione 1: introduzione
+\section{Introduzione}
+
+
+\begin{frame}{\textbf{Scopo dello studio}}
+Monitoraggio della vegetazione sulla Majella e cima del Morrone post incendio nell'estate del 2017, che ha interessato il versante occidentale del Morrone bruciando svariati ettari di pineta, faggeta e formazioni arbustive.
+\end{frame}
+
+\begin{frame}{\textbf{Incendio Morrone 2017}}
+\begin{figure}
+    \centering
+    \includegraphics[width=.9
+    \textwidth]{Immagini/Immagine 2023-09-08 131350.png}
+    \caption{Incendio dell’estate 2017 nel versante occidentale del Morrone}
+    \label{fig:my_label}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{\textbf{Scopo dello studio}}
+\begin{itemize}
+    \item Acquisizione di immagioni satellitari \textbf{Sentinel 2} (2018-2023)
+    \item  Calcolo degli \textbf{indici spettrali} utilizzando R
+    \item  Verifica della presenza di variazioni significative: differenze di \textbf{land cover}
+\end{itemize}
+\end{frame}
+
+% Sezione 2: materiali e metodi
+\section{Materiali e Metodi}
+
+
+\begin{frame}{\textbf{Materiali e Metodi}}
+\begin{itemize}
+    \item Importazione e visualizzazione delle immagini \textbf{Sentinel 2}
+    \item Calcolo e visualizzazione degli \textbf{indici spettrali}
+    \item \textbf{PCA}: \textit{Principal Component Analysis}
+    \item \textbf{Land Cover}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\textbf{Link alla repository}}
+\begin{center}
+     \href{https://github.com/LuisaCostantini/telerilevamento2023}{https://github.com/LuisaCostantini/telerilevamento2023}
+\end{center}
+\end{frame}
+
+\subsection{Importazione e visualizzazione delle immagini Sentinel 2}
+
+
+\begin{frame}{\textbf{Importazione e visualizzazione delle immagini Sentinel 2}}
+\begin{itemize}
+    \item Download immagini da {\href{https://scihub.copernicus.eu/dhus/#/home}{Copernicus}}
+    \item Importazione in R
+    \item Ritaglio dell'area di studio
+    \item Visualizzazione delle immagini in Colori Naturali e NIR
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\textbf{Area di studio}}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Immagini/Immagine 2023-09-08 144734.png}
+    \caption{Area di studio}
+    \label{fig:enter-label}
+\end{figure}
+\end{frame}
+
+\begin{frame}{\textbf{2018}}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Immagini/Majella_2018.pdf}
+    \caption{2018    Colori reali     -     NIR }
+    \label{fig:enter-label}
+\end{figure}
+\end{frame}
+
+\begin{frame}{\textbf{2019}}
+\begin{figure}
+    \centering
+    \caption{2019    Colori reali     -     NIR }
+\includegraphics[width=1\textwidth\keepaspectratio]{Immagini/Majella_2019.pdf}
+    \label{fig:enter-label}
+\end{figure}
+\end{frame}
+
+\begin{frame}{\textbf{2020}}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Immagini/Majella_2020.pdf}
+    \caption{2020    Colori reali     -     NIR }
+    \label{fig:enter-label}
+\end{figure}
+\end{frame}
+
+\begin{frame}{\textbf{2021}}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{Immagini/Majella_2021.pdf}
+    \caption{2021    Colori reali     -     NIR }
+    \label{fig:enter-label}
+\end{figure}
+\end{frame}
+
+\begin{frame}{\textbf{2022}}
+\begin{figure}
+    \centering
+    \caption{2022   Colori reali     -     NIR }
+    \includegraphics[width=1\textwidth]{Immagini/Majella_2022.pdf}
+     \label{fig:enter-label}
+\end{figure}
+\end{frame}
+
+\begin{frame}{\textbf{2023}}
+\begin{figure}
+    \centering
+    \caption{2023    Colori reali     -     NIR }
+    \includegraphics[width=1\textwidth]{Immagini/Majella_2023.pdf}
+    \label{fig:enter-label}
+\end{figure}
+\end{frame}
+
+
+\subsection{Calcolo e visualizzazione degli indici spettrali}
+
+\begin{frame}{\textbf{Calcolo e visualizzazione degli indici spettrali}}
+\begin{itemize}
+    \item Scelta e calcolo degli indici spettrali
+    \item Calcolo della differenza degli indici fra 2018 e 2023 
+    \item Plot dei risultati
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\textbf{Scelta degli ndici spettrali}}
+\begin{itemize}
+    \item \textbf{NDVI}(\textit{Normalized Difference Vegetation Index}): è l'indice di vegetazione più utilizzato. Esso descrive il livello di vigoria della coltura e si calcola come il rapporto tra la differenza e la somma delle radiazioni riflesse nel vicino infrarosso e nel rosso, ossia come (NIR-RED)/(NIR+RED). 
+     \item La vegetazione assorbe la radiazione solare in diverse bande, ossia in diversi intervalli di frequenza e lunghezze d’onda, e ne riemette una percentuale differente in ciascuna di esse. 
+      \item La percentuale di radiazione riemessa in bande specifiche, come quelle del vicino infrarosso (NIR), del rosso (RED), e dell’infrarosso a onde corte (SWIR), indica lo stato di salute della pianta o lo stress idrico.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\textbf{Calcolo degli indici spettrali}}
+\begin{itemize}
+    \item \textbf{NDVI}(\textit{Normalized Difference Vegetation Index}):
+    \begin{equation}
+        NDVI = \frac{NIR - rosso}{NIR + rosso}
+    \end{equation}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{\textbf{Plot degli indici spettrali: NDVI 2018-2023}}
+    \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Immagini/NDVI.pdf}
+    \caption{ NDVI 2028-2023}
+    \label{fig:enter-label}
+\end{figure}
+\end{frame}
+
+\begin{frame}{\textbf{Differenza NDVI}}
+    \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Immagini/NDVIDIFF.pdf}
+    \caption{NDVI - differenza fra 2018 e 2023}
+    \label{fig:enter-label}
+\end{figure}
+\end{frame}
+
+\subsection{PCA: \textit{Principal Component Analysis}}
+
+\begin{frame}{\textbf{PCA: Principal Component Analysis}}
+    \begin{itemize}
+    \item E' una tecnica per la semplificazione dei dati utilizzata nell'ambito della statistica multivariata.
+         \item  L'obiettivo della PCA è spiegare la maggior parte della variabilità in un set di dati con meno variabili rispetto al set di dati originale. 
+        \item Combinazioni lineari di variabili che catturano la massima varianza possibile nelle nuove componenti principali
+        \item I dati possono essere plottati nello spazio delle componenti principali, permettendo di visualizzare i modelli di variazione in modo semplificato
+        \item Il plot restituisce indicazioni sulle aree caratterizzate da maggior varianza, permettendo di identificare:
+        \begin{itemize}
+            \item Zone ad \textbf{elevata vulnerabilità}
+            \item Possibili \textbf{pattern ambientali}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{\textbf{PCA: Principal Component Analysis}}
+    \begin{figure}
+            \centering
+            \includegraphics[width=0.8\textwidth]{Immagini/PC1.pdf}
+            \caption{PC1}
+        \label{fig:enter-label}
+        \end{figure}
+\end{frame}
+
+\subsection{\textit{Land Cover}}
+
+\begin{frame}{\textbf{Land Cover}}
+    \begin{itemize}
+        \item Classificazione delle immagini Sentinel 2
+        \item Calcolo delle frequenze e delle percentuali di \textit{land cover}
+        \item Creazione di un dataframe con i risultati ottenuti
+        \item Plot dei risultati
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\textbf{Land cover: risultati}}
+    \begin{figure}
+            \centering
+            \includegraphics[width=1\textwidth]{Immagini/Finalplot.pdf}
+            \caption{\textit{Land cover}}
+        \label{fig:enter-label}
+        \end{figure}
+\end{frame}
+
+
+
+% Sezione 3: conclusioni
+\section{Conclusioni}
+
+
+\begin{frame}{\textbf{Conclusioni}}
+    \begin{itemize}
+        \item Come si può notare dalla figura precedente ci sono \textbf{significative differenze} di \textit{land cover} soprattutto nel 2018 e 2023.
+        \item  Queste differenze potrebbero essere principalmente dovute \textbf{a due incendi} (hanno interessato anche la stessa area)  uno nel 2017 e l'altro, recentissimo, a luglio di quest'anno. Infatti, possiamo notare nei grafici una copertura vegetale molto ridotta e/o assente.
+        \item Con la PCA sono state rilevate le zone all'interno dell'area di studio soggette a \textbf{maggior vulnerabilità}.
+        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+    \centering \textbf{Grazie per l'attenzione!}
+\end{frame}
+
+
+\end{document}
