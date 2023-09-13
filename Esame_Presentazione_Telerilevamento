@@ -15,11 +15,13 @@
 \usepackage{subfig}
 
 
+	
 \title{Monitoraggio della vegetazione sulla Majella e Monte Morrone}
 \subtitle{Progetto di Telerilevamento Geo-Ecologico - 9345}
 \author{Luisa Costantini}
 \date{Settembre 2023}
 \institute{Università di Bologna}
+\logo{\includegraphics[width=16mm]{Immagini/research-logo.png}}
 \begin{document}
 \maketitle
 
@@ -35,7 +37,11 @@
 
 
 \begin{frame}{\textbf{Scopo dello studio}}
-Monitoraggio della vegetazione sulla Majella e cima del Morrone post incendio nell'estate del 2017, che ha interessato il versante occidentale del Morrone bruciando svariati ettari di pineta, faggeta e formazioni arbustive.
+\begin{itemize}
+    \item Monitoraggio della vegetazione sulla Majella dopo l'incendio avvenuto nel 2017, che ha interessato il versante occidentale della cima del Morrone bruciando svariati ettari di pineta, faggeta e formazioni arbustive. 
+\item Il massiccio del Morrone, si trova racchiuso tra la Valle Peligna a ovest, il fiume Aterno a nord e la Maiella a est, dalla quale è separato dalla valle del fiume Orta.
+\end{itemize}
+
 \end{frame}
 
 \begin{frame}{\textbf{Incendio Morrone 2017}}
@@ -48,27 +54,19 @@ Monitoraggio della vegetazione sulla Majella e cima del Morrone post incendio ne
 \end{figure}
 \end{frame}
 
+% Sezione 2: materiali e metodi
+\section{Materiali e Metodi}
 
-\begin{frame}{\textbf{Scopo dello studio}}
+\begin{frame}{\textbf{Materiali e Metodi}}
 \begin{itemize}
-    \item Acquisizione di immagioni satellitari \textbf{Sentinel 2} (2018-2023)
-    \item  Calcolo degli \textbf{indici spettrali} utilizzando R
+    \item Acquisizione, importazione e visualizzazione delle immagioni satellitari \textbf{Sentinel 2} dal 2018 al 2023
+    \item  Calcolo e visualizzazione degli \textbf{indici spettrali} utilizzando RStudio
+    \item \textbf{PCA}: \textit{Principal Component Analysis}
     \item  Verifica della presenza di variazioni significative: differenze di \textbf{land cover}
 \end{itemize}
 \end{frame}
 
-% Sezione 2: materiali e metodi
-\section{Materiali e Metodi}
 
-
-\begin{frame}{\textbf{Materiali e Metodi}}
-\begin{itemize}
-    \item Importazione e visualizzazione delle immagini \textbf{Sentinel 2}
-    \item Calcolo e visualizzazione degli \textbf{indici spettrali}
-    \item \textbf{PCA}: \textit{Principal Component Analysis}
-    \item \textbf{Land Cover}
-\end{itemize}
-\end{frame}
 
 \begin{frame}{\textbf{Link alla repository}}
 \begin{center}
@@ -82,8 +80,8 @@ Monitoraggio della vegetazione sulla Majella e cima del Morrone post incendio ne
 \begin{frame}{\textbf{Importazione e visualizzazione delle immagini Sentinel 2}}
 \begin{itemize}
     \item Download immagini da {\href{https://scihub.copernicus.eu/dhus/#/home}{Copernicus}}
-    \item Importazione in R
-    \item Ritaglio dell'area di studio
+    \item Importazione in RStudio
+    \item Crop dell'area di studio
     \item Visualizzazione delle immagini in Colori Naturali e NIR
 \end{itemize}
 \end{frame}
@@ -91,7 +89,7 @@ Monitoraggio della vegetazione sulla Majella e cima del Morrone post incendio ne
 \begin{frame}{\textbf{Area di studio}}
 \begin{figure}
     \centering
-    \includegraphics[width=1\textwidth]{Immagini/Immagine 2023-09-08 144734.png}
+    \includegraphics[width=0.9\textwidth]{Immagini/Immagine 2023-09-13 113707.png}
     \caption{Area di studio}
     \label{fig:enter-label}
 \end{figure}
@@ -109,7 +107,7 @@ Monitoraggio della vegetazione sulla Majella e cima del Morrone post incendio ne
 \begin{frame}{\textbf{2019}}
 \begin{figure}
     \centering
-    \caption{2019    Colori reali     -     NIR }
+    \caption{2019 Colori reali -NIR }
 \includegraphics[width=1\textwidth\keepaspectratio]{Immagini/Majella_2019.pdf}
     \label{fig:enter-label}
 \end{figure}
