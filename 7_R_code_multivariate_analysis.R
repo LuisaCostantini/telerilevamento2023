@@ -62,7 +62,7 @@ ggplot() +
 # Focal standard deviation
 sd3 <- focal(pci[[1]], matrix(1/9, 3, 3), fun = sd)
 
-# Coerce into a datafram
+# Coerce into a dataframe
 sd3d
 sd3d <- as.data.frame(sd3, xy=T)
 
