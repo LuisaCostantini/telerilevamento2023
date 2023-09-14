@@ -162,9 +162,13 @@
 
 \begin{frame}{\textbf{Scelta degli ndici spettrali}}
 \begin{itemize}
-    \item \textbf{NDVI}(\textit{Normalized Difference Vegetation Index}): è l'indice di vegetazione più utilizzato. Esso descrive il livello di vigoria della coltura e si calcola come il rapporto tra la differenza e la somma delle radiazioni riflesse nel vicino infrarosso e nel rosso, ossia come (NIR-RED)/(NIR+RED). 
-     \item La vegetazione assorbe la radiazione solare in diverse bande, ossia in diversi intervalli di frequenza e lunghezze d’onda, e ne riemette una percentuale differente in ciascuna di esse. 
-      \item La percentuale di radiazione riemessa in bande specifiche, come quelle del vicino infrarosso (NIR), del rosso (RED), e dell’infrarosso a onde corte (SWIR), indica lo stato di salute della pianta o lo stress idrico.
+    \item \textbf{NDVI}(\textit{Normalized Difference Vegetation Index}): è il principale indicatore da satellite della presenza di vegetazione sulla superficie terrestre e del suo evolversi nel tempo. Esso descrive il livello di vigoria della coltura e si calcola come il rapporto tra la differenza e la somma delle radiazioni riflesse nel vicino infrarosso e nel rosso, ossia come (NIR-RED)/(NIR+RED). 
+    \item La vegetazione assorbe la radiazione solare in diverse bande, ossia
+in diversi intervalli di frequenza e lunghezze d’onda, e ne riemette
+una percentuale differente in ciascuna di esse.
+     \item  Valuta la presenza di attività fotosintetica, in quanto mette in relazione lo spettro del rosso, in cui c’è assorbimento da parte della clorofilla, e quello del vicino infrarosso in cui le foglie riflettono la luce per evitare il surriscaldamento. 
+      \item I valori dell'indice sono tipicamente compresi tra -1 e +1.
+     
 \end{itemize}
 \end{frame}
 
