@@ -1,16 +1,14 @@
-# R code multivariate analysis 
-#How to reduce a multidimensional dataset 
+# R code MULTIVARIATE ANALYSIS : how to reduce a multidimensional dataset
 
+# Load the required packages
 library(raster)
 library(ggplot2)
 library(viridis)
 
 #Import the working directory 
-
 setwd("C:/lab/") # Windows
 
 # Exercise: import the Similaun image (glacier) 
-
 sen <- brick("sentinel.png")
 sen
 plot(sen)
